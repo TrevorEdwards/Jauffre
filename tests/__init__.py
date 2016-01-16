@@ -1,5 +1,5 @@
 from nose.tools import *
-import jauffre 
+import jauffre
 
 def setup():
     print "SETUP!"

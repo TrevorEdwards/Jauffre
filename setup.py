@@ -11,7 +11,10 @@ config = {
     'author_email': 'tre23@cornell.edu',
     'version': '0.1',
     'install_requires': ['nose'],
-    'packages': ['jauffre'],
+    'packages': [
+        'jauffre',
+        'pyttsx'
+    ],
     'scripts': [],
     'name': 'jauffre'
 }
