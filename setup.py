@@ -13,7 +13,9 @@ config = {
     'install_requires': ['nose'],
     'packages': [
         'jauffre',
-        'pyttsx'
+        'pyttsx',
+        'pyaudio',
+        'SpeechRecognition'
     ],
     'scripts': [],
     'name': 'jauffre'

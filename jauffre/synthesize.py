@@ -1,16 +1,17 @@
 import pyttsx
-engine = pyttsx.init()
+engine = pyttsx.init('espeak')
 
 engine.setProperty('rate', 140)
 
 voices = engine.getProperty('voices')
-myvoice = voices[15]
+#myvoice = voices[15]
 
-print myvoice
-
-engine.setProperty('voice',myvoice.id)
+#engine.setProperty('voice',myvoice.id)
 
 def say(text):
     print text #debug
-    engine.say(text)
-    engine.runAndWait()
+    if text == "":
+        return
+    #engine.say(text)
+    #engine.runAndWait()
+    #engine.stop()
