@@ -1,13 +1,14 @@
+import joke
+
 class Command(object):
 
-	def __init__(self):
-		self.type = ''
+	def __init__(self,type):
+		self.type = type
 
 	def get_type(self):
 		return self.type
 
-	def set_type(self, value):
-		self.type = value
-
 	def do(self):
-		print 'Yikes!'
+		if self.get_type() == "joke":
+			joke.get_joke_text()
+

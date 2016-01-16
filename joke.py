@@ -9,6 +9,3 @@ def get_joke_text():
 	joke = decoded_resp['value']['joke']
 
 	print joke
-
-if __name__ == '__main__':
-	get_joke_text()
