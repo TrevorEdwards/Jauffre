@@ -5,10 +5,10 @@ import speech
 
 
 def next():
-    emailcount = 6
+    emailcount = 2
     while True:
         emailcount = emailcount + 1
-        if emailcount > 5:
+        if emailcount > 1:
             emailcount = 0
             res = emailio.get()
             if res != "" and type(res) == str:
