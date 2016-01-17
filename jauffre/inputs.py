@@ -1,5 +1,10 @@
-#receives input
+#receives input from email
+import emailio
+import time
 
 def next():
-    #TODO: Replace this with speech recognition and email receipt
-    return raw_input()
+    while True:
+        time.sleep(5)
+        res = emailio.get()
+        if res != "":
+            return res
