@@ -5,6 +5,8 @@ coords = (39.957, -75.192) # cuurently the location of Drexel University, change
 geocode = str(coords[0]) + '%2C' + str(coords[1])
 language = 'en-US' # I don't think you need to change your language
 
+golf_conditions = ['the worst', 'an awful', 'a terrible', 'a bad', 'an unpleasant', 'an average', 'a decent', 'a good', 'a great', 'a fantastic', 'the best']
+
 # Gets weather data
 def get_weather():
 	authorize()
@@ -24,12 +26,14 @@ def get_weather():
 	precip_chance = weather_fcast['forecasts'][1]['day']['pop']
 	precip_type = weather_fcast['forecasts'][1]['day']['precip_type']
 	pressure = weather_obsv['observation']['metric']['altimeter']
+	golf_index = weather_fcast['forecasts'][1]['day']['golf_index']
 
 	synthesize.say( "Today's weather is {}, with a temperature of {} degrees, but it feels like {} degrees.\
 	The wind speed is {} kilometers per hour. \
 	The humidity is {} percent. \
 	There is a {} percent chance of {}. \
-	The pressure is {} millibars.".format(weather_desc,current_temp,feels_like,wind_speed,humidity,precip_chance,precip_type,pressure) )
+	The pressure is {} millibars. \
+	Today is {} day to play golf".format(weather_desc,current_temp,feels_like,wind_speed,humidity,precip_chance,precip_type,pressure,golf_conditions[golf_index]) )
 
 def authorize():
 	# create a password manager
