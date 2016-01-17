@@ -20,7 +20,7 @@ def take_picture( file ):
     camera.capture(file)
 
 def selfies():
-	filename = enumerate('image{counter:02d}.jpg')
+	filename = ('image{}.jpg'.format(time.time()))
 	take_picture('./selfies/' + filename)
 	emailio.send_mail('jauffrebot@gmail.com', 'trevedwa@gmail.com', '', '', ['./selfies/' + filename])
 
