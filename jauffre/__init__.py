@@ -18,7 +18,8 @@ synthesize.say('Send me a command.')
 while True:
     if in_normal_mode:
         command = inputs.next()
-        interpreter.interpret(command)
+        if interpreter.interpret(command):
+            in_normal_mode = not in_normal_mode
     else:
         check_email_count += 1
         light.turn_on(True)
@@ -38,7 +39,8 @@ while True:
             if check_input_count > 25:
                 check_input_count = 0
                 command = inputs.scan_email()
-                interpreter.interpret(command)
+                if interpreter.interpret(command):
+                    in_normal_mode = not in_normal_mode
             light.turn_on(False)
             time.sleep(4)
         shutil.copyfile('pictures/current.jpg','pictures/last.jpg')

@@ -1,5 +1,5 @@
-import __init__, emalio
+import emailio
 
 def toggle_security():
-    emalio.send('trevedwa@gmail.com','Security mode has been set '+ (not __init__.in_normal_mode))
-    __init__.in_normal_mode = not __init__.in_normal_mode
+    emailio.send('trevedwa@gmail.com','Security mode has been set '+ (not __init__.in_normal_mode))
+    return True

@@ -29,4 +29,5 @@ class Command(object):
 		elif self.get_type() == "stop":
 			music.stop_song()
 		elif self.get_type() == "security":
-			security.toggle_security()
+			return security.toggle_security()
+		return False;
