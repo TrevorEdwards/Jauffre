@@ -5,14 +5,11 @@ import speech
 
 
 def next():
-    emailcount = 2
     while True:
-        emailcount = emailcount + 1
-        if emailcount > 1:
-            emailcount = 0
-            res = emailio.get()
-            if res != "" and type(res) == str:
-                return res[res.find("Content-Type: text/plain; charset=UTF-8"):]
+        res = emailio.get()
+        if res != "" and type(res) == str:
+            return res[res.find("Content-Type: text/plain; charset=UTF-8"):]
+        time.sleep(5)
         # rect = speech.recognize()
         # print type(rect)
         # if rect != "" and type(rect) == unicode:
