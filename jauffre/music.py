@@ -1,10 +1,25 @@
+import sys
+sys.path.append('/music')
+import pygame.mixer
+import pygame.mixer_music as musicplayer
+pygame.mixer.init()
 
-s = Sound() #Define one sound so we don't have overlap
+def play(song):
+	musicplayer.load(song)
+	musicplayer.play()
 
-#plays a song in the music folder
-def play_song(name):
-    s.read(name)
-    s.play()
+def queue(song):
+	musicplayer.queue(song)
 
-def stop_song():
-    s.stop()
+def stop():
+	musicplayer.stop()
+
+def pause():
+	musicplayer.pause()
+
+def unpause():
+	musicplayer.unpause()
+
+if __name__ == '__main__':
+	song = "romantic.wav"
+	play(song)
