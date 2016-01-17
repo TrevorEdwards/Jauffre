@@ -1,5 +1,4 @@
-import joke
-
+import joke, weather
 class Command(object):
 
 	def __init__(self,type):
@@ -11,4 +10,6 @@ class Command(object):
 	def do(self):
 		if self.get_type() == "joke":
 			joke.get_joke_text()
+		elif self.get_type() = "weather":
+			weather.get_weather()
 
