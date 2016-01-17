@@ -4,7 +4,8 @@ import speech
 import inputs
 import time
 import interpreter
-import camera_util, light, shutil, emailio, Image
+import camera_util, light, shutil, emailio
+from PIL import Image
 #import face
 
 in_normal_mode = True
