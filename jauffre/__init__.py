@@ -3,6 +3,7 @@ import synthesize
 import speech
 import inputs
 import time
+#import face
 
 in_normal_mode = True
 
