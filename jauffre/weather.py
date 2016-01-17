@@ -1,4 +1,4 @@
-import json, urllib2
+import json, urllib2, synthesize
 
 units = 'm' # 'm' for metric, 'e' for English(imperial)
 coords = (39.957, -75.192) # cuurently the location of Drexel University, change this to whatever location necessary
@@ -9,7 +9,7 @@ language = 'en-US' # I don't think you need to change your language
 def get_weather():
 	authorize()
 	url = "https://twcservice.mybluemix.net:443/api/weather/v2/observations/current?units={0}&geocode={1}&language={2}".format(units,geocode,language)
-	resp = urllib2.urlopen(url = url).read() 
+	resp = urllib2.urlopen(url = url).read()
 	weather_obsv = json.JSONDecoder().decode(resp)
 
 	url = "https://twcservice.mybluemix.net:443/api/weather/v2/forecast/daily/10day?units={0}&geocode={1}&language={2}".format(units,geocode,language)
@@ -25,11 +25,11 @@ def get_weather():
 	precip_type = weather_fcast['forecasts'][1]['day']['precip_type']
 	pressure = weather_obsv['observation']['metric']['altimeter']
 
-	print "Today's weather is {}, with a temperature of {} degrees, but it feels like {} degrees.\
+	synthesize.say( "Today's weather is {}, with a temperature of {} degrees, but it feels like {} degrees.\
 	The wind speed is {} kilometers per hour. \
 	The humidity is {} percent. \
 	There is a {} percent chance of {}. \
-	The pressure is {} millibars.".format(weather_desc,current_temp,feels_like,wind_speed,humidity,precip_chance,precip_type,pressure)
+	The pressure is {} millibars.".format(weather_desc,current_temp,feels_like,wind_speed,humidity,precip_chance,precip_type,pressure) )
 
 def authorize():
 	# create a password manager

@@ -4,17 +4,17 @@ import speech
 import inputs
 import time
 import email
+import interpreter
 #import face
 
 in_normal_mode = True
 
 
 synthesize.say('My name is Jauffree.')
-synthesize.say('Get ready to be impressed.')
+synthesize.say('Send me a command.')
 #Here we begin the command waiting loop.
 #speech.recognize() TODO: Make this work on the py
 
 while True:
-    synthesize.say('What is your command?')
     command = inputs.next()
-    synthesize.say('You want me to execute command: ' + command)
+    interpreter.interpret(command)
