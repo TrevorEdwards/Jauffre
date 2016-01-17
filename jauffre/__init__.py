@@ -20,13 +20,15 @@ while True:
         command = inputs.next()
         if interpreter.interpret(command):
             in_normal_mode = not in_normal_mode
+            emailio.send_mail('jauffreebot@gmail.com','trevedwa@gmail.com','Security mode has been enabled','Security mode has been enabled. Yikes!')
+            synthesize.say('Security Mode Activated.  Yikes!')
     else:
         check_email_count += 1
         light.turn_on(True)
         #Take a picture
         camera_util.take_picture("pictures/current.jpg")
         #Compare to previous picture
-        if compare_photos("pictures/current.jpg, pictures/last.jpg"):
+        if False:#compare_photos("pictures/current.jpg", "pictures/last.jpg", in_alarm):
             #Store current photo
             shutil.copyfile('pictures/kept/current.jpg','pictures/kept/sec_'+time.time())
             if not in_alarm:
@@ -36,14 +38,16 @@ while True:
             time.sleep(.5) #We want a video-like history
         else:
             in_alarm = False
-            if check_input_count > 25:
-                check_input_count = 0
+            if check_email_count > 3:
+                check_email_count = 0
                 command = inputs.scan_email()
                 if interpreter.interpret(command):
                     in_normal_mode = not in_normal_mode
+                    synthesize.say('Security Mode Deactivated.  Chill!')
+                    emailio.send_mail('jauffreebot@gmail.com','trevedwa@gmail.com','Security mode has been turned off','Security mode has been turned off. Phew!')
             light.turn_on(False)
             time.sleep(4)
-        shutil.copyfile('pictures/current.jpg','pictures/last.jpg')
+        #shutil.copyfile('pictures/current.jpg','pictures/last.jpg') TODO
 
 
 #Compares two photos, returning true if they are significantly different (motion detection levels)
