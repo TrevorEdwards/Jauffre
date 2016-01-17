@@ -1,10 +1,10 @@
-import pyttsx
-engine = pyttsx.init('espeak')
+# import pyttsx
+# engine = pyttsx.init('espeak')
 
-engine.setProperty('rate', 140)
+# engine.setProperty('rate', 140)
 
-voices = engine.getProperty('voices')
-#myvoice = voices[15]
+# voices = engine.getProperty('voices')
+# #myvoice = voices[15]
 
 #engine.setProperty('voice',myvoice.id)
 
