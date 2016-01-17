@@ -1,4 +1,4 @@
-import joke, weather, music, security, name, creators, having_date
+import joke, weather, music, security, name, creators, having_date, camera_util
 import os
 
 class Command(object):
@@ -36,4 +36,6 @@ class Command(object):
 			having_date.do()
 		elif self.get_type() == "security":
 			return security.toggle_security()
+		elif self.get_type() == "selfie":
+			camera_util.selfie()	
 		return False;

@@ -1,6 +1,7 @@
 import time
 import picamera
 import synthesize
+import emailio
 camera = picamera.PiCamera()
 # camera.capture('image.jpg')
 # camera.hflip = True
@@ -16,4 +17,10 @@ camera.vflip = True
 #             break
 
 def take_picture( file ):
-    camera.capture(file) 
+    camera.capture(file)
+
+def selfies():
+	filename = enumerate('image{counter:02d}.jpg')
+	take_picture('./selfies/' + filename)
+	emailio.send_mail('jauffrebot@gmail.com', 'trevedwa@gmail.com', '', '', ['./selfies/' + filename])
+
