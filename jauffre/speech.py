@@ -16,33 +16,37 @@
 #         print("Google Speech Recognition could not understand audio")
 #     except sr.RequestError as e:
 #         print("Could not request results from Google Speech Recognition service; {0}".format(e))
-p = pyaudio.PyAudio()
 
-stream = p.open(format = pyaudio.paInt16,
-    channels = 1,
-    rate = sRate,
-    input = True,
-    frames_per_buffer = fPerBuffer,
-    input_device_index = 2)
+import pyaudio
 
-recog = sr.Recognizer("en-GB")
-r = array('h')
+def recognize():
+    p = pyaudio.PyAudio()
 
-## You will need to loop this next bit until you are finished recording
-data = array('h',stream.read(framesPerBuffer))
-rms = audioop.rms(data,2)
-r.extend(data)
-r.append(data)
-########
-data = pack('<' + ('h'*len(r)), *r)
-sample_width = p.get_sample_size(pyaudio.paInt16)
+    stream = p.open(format = pyaudio.paInt16,
+        channels = 1,
+        rate = 256, #TODO tune this
+        input = True,
+        frames_per_buffer = 4, #TODO this too
+        input_device_index = 2) #TODO hardcode this right
 
-wf = wave.open("/home/pi/Desktop/foo.wav", 'wb')
-wf.setnchannels(1)
-wf.setsampwidth(sample_width)
-wf.setframerate(sRate)
-wf.writeframes(data)
-wf.close()
+    recog = sr.Recognizer("en-GB")
+    r = array('h')
 
-with sr.WavFile("foo.wav") as source:
-    return recog.record(source)
+    ## You will need to loop this next bit until you are finished recording
+    data = array('h',stream.read(framesPerBuffer))
+    rms = audioop.rms(data,2)
+    r.extend(data)
+    r.append(data)
+    ########
+    data = pack('<' + ('h'*len(r)), *r)
+    sample_width = p.get_sample_size(pyaudio.paInt16)
+
+    wf = wave.open("/home/pi/Desktop/foo.wav", 'wb')
+    wf.setnchannels(1)
+    wf.setsampwidth(sample_width)
+    wf.setframerate(sRate)
+    wf.writeframes(data)
+    wf.close()
+
+    with sr.WavFile("foo.wav") as source:
+        return recog.record(source)
