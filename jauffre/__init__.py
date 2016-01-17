@@ -1,5 +1,9 @@
 #imports
+import math
+import operator
+import numpy as np
 import synthesize
+import cv2
 import speech
 import inputs
 import time
@@ -10,11 +14,28 @@ from PIL import Image
 
 in_normal_mode = True
 check_email_count = 0
+pic_count = 0
 
 synthesize.say('Hello. I am Jauffre: Your friendly neighborhood house bot!')
 time.sleep(3)
 #Here we begin the command waiting loop.
 
+
+def compare_photos(path1, path2, in_alarm):
+    imga = Image.open(path1)
+    imgb = Image.open(path2)
+    error_thresh = 2300
+    return mse(imga, imgb) > error_thresh
+
+
+#Source: http://www.pyimagesearch.com/2014/09/15/python-compare-two-images/
+def mse(imageA, imageB):
+    h1 = imageA.histogram()
+    h2 = imageB.histogram()
+    rms = math.sqrt(reduce(operator.add,
+                           map(lambda a,b: (a-b)**2, h1, h2))/len(h1))
+    return rms
+in_alarm = False
 while True:
     if in_normal_mode:
         command = inputs.next()
@@ -28,13 +49,14 @@ while True:
         #Take a picture
         camera_util.take_picture("pictures/current.jpg")
         #Compare to previous picture
-        if False:#compare_photos("pictures/current.jpg", "pictures/last.jpg", in_alarm):
+        if (compare_photos("pictures/current.jpg", "pictures/last.jpg", in_alarm) == True) and pic_count > 3:
             #Store current photo
-            shutil.copyfile('pictures/kept/current.jpg','pictures/kept/sec_'+time.time())
+            shutil.copyfile('pictures/current.jpg','pictures/kept/sec_'+str(time.time()))
             if not in_alarm:
                 in_alarm = True
                 #Email current photo to Trevor
-                emailio.send_file('trevedwa@gmail.com','Possible security breach detected','pictures/current.jpg')
+		synthesize.say("You shouldn't be snooping around here at this time.  Someone might think you're... up to something.")
+                emailio.send_mail('jauffrebot@gmail.com','trevedwa@gmail.com','Uh oh...','Possible security breach detected',['pictures/current.jpg','pictures/last.jpg'])
             time.sleep(.5) #We want a video-like history
         else:
             in_alarm = False
@@ -46,29 +68,8 @@ while True:
                     synthesize.say('Security Mode Deactivated.  Chill!')
                     emailio.send_mail('jauffreebot@gmail.com','trevedwa@gmail.com','Security mode has been turned off','Security mode has been turned off. Phew!')
             light.turn_on(False)
+            pic_count += 1
             time.sleep(4)
-        #shutil.copyfile('pictures/current.jpg','pictures/last.jpg') TODO
+        shutil.copyfile('pictures/current.jpg','pictures/last.jpg') 
 
 
-#Compares two photos, returning true if they are significantly different (motion detection levels)
-#Reduced threshold if in an alarm?
-def compare_photos( path1, path2, in_alarm):
-    imga = Image.open(path1)
-    imgb = Image.open(path2)
-    error_thresh = .2
-    if (in_alarm):
-        error_thresh = .1
-    return mse(imga, imgb) > error_thresh
-
-
-#Source: http://www.pyimagesearch.com/2014/09/15/python-compare-two-images/
-def mse(imageA, imageB):
-	# the 'Mean Squared Error' between the two images is the
-	# sum of the squared difference between the two images;
-	# NOTE: the two images must have the same dimension
-	err = np.sum((imageA.astype("float") - imageB.astype("float")) ** 2)
-	err /= float(imageA.shape[0] * imageA.shape[1])
-
-	# return the MSE, the lower the error, the more "similar"
-	# the two images are
-	return err

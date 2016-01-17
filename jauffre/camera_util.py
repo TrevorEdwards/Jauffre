@@ -1,10 +1,10 @@
 import time
-#import picamera
+import picamera
 import synthesize
-# camera = picamera.PiCamera()
+camera = picamera.PiCamera()
 # camera.capture('image.jpg')
 # camera.hflip = True
-# camera.vflip = True
+camera.vflip = True
 # camera.start_preview()
 # camera.stop_preview()
 
@@ -16,5 +16,4 @@ import synthesize
 #             break
 
 def take_picture( file ):
-    synthesize.say('Say cheese!')
-    #camera.capture(file) TODO
+    camera.capture(file) 
