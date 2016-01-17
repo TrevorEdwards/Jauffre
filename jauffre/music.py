@@ -28,6 +28,7 @@ import pygame
 
 pygame.mixer.init()
 channel1 = pygame.mixer.Channel(1)
+channel1.set_volume(1)
 
 def add_song_to_queue(song):
 	sound = pygame.mixer.Sound('./music/' + song)
