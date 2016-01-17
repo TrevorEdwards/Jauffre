@@ -1,4 +1,4 @@
-import joke, weather, music
+import joke, weather, music, security
 import os
 
 class Command(object):
@@ -23,9 +23,10 @@ class Command(object):
 			if not music.player.playing:
 				music.play_song()
 		elif self.get_type() == "pause":
-			music.pause_song()		
+			music.pause_song()
 		elif self.get_type() == "skip":
 			music.next_song()
 		elif self.get_type() == "stop":
 			music.stop_song()
-
+		elif self.get_type() == "security":
+			security.toggle_security()
