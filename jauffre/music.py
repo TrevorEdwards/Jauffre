@@ -1,25 +1,21 @@
-import sys
-sys.path.append('/music')
-import pygame.mixer
-import pygame.mixer_music as musicplayer
-pygame.mixer.init()
+import pyglet
+player = pyglet.media.Player()
 
-def play(song):
-	musicplayer.load(song)
-	musicplayer.play()
+def add_song_to_queue(song):
+	song = pyglet.media.load('./music/' + song)
+	#song.play()
+	#song.pause()
+	player.queue(song)
 
-def queue(song):
-	musicplayer.queue(song)
+def play_song():
+	player.play()
+	
+def pause_song():
+	player.pause()
 
-def stop():
-	musicplayer.stop()
+def next_song():
+	player.next_source()
 
-def pause():
-	musicplayer.pause()
-
-def unpause():
-	musicplayer.unpause()
-
-if __name__ == '__main__':
-	song = "romantic.wav"
-	play(song)
+def stop_song():
+	while(player.source != None):
+		player.next_source()
