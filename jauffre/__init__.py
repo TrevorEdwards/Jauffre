@@ -4,7 +4,7 @@ import speech
 import inputs
 import time
 import interpreter
-import camera_util, light, shutil, emailio
+import camera_util, light, shutil, emailio, Image
 #import face
 
 in_normal_mode = True
@@ -47,4 +47,22 @@ while True:
 #Compares two photos, returning true if they are significantly different (motion detection levels)
 #Reduced threshold if in an alarm?
 def compare_photos( path1, path2, in_alarm):
-    pass
+    imga = Image.open(path1)
+    imgb = Image.open(path2)
+    error_thresh = .2
+    if (in_alarm):
+        error_thresh = .1
+    return mse(imga, imgb) > error_thresh
+
+
+#Source: http://www.pyimagesearch.com/2014/09/15/python-compare-two-images/
+def mse(imageA, imageB):
+	# the 'Mean Squared Error' between the two images is the
+	# sum of the squared difference between the two images;
+	# NOTE: the two images must have the same dimension
+	err = np.sum((imageA.astype("float") - imageB.astype("float")) ** 2)
+	err /= float(imageA.shape[0] * imageA.shape[1])
+
+	# return the MSE, the lower the error, the more "similar"
+	# the two images are
+	return err

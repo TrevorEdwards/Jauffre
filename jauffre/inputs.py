@@ -5,7 +5,7 @@ import speech
 
 
 def next():
-    emailcount = 0
+    emailcount = 6
     while True:
         emailcount = emailcount + 1
         if emailcount > 5:
