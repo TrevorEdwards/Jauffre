@@ -1,6 +1,6 @@
 import command
 
-command_list = ["joke","weather","music","light"]
+command_list = ["joke","weather","play","pause","stop","skip","light"]
 
 def interpret(s):
 	for cmd in command_list:
