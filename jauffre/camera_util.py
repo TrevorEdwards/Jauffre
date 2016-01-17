@@ -20,8 +20,11 @@ def take_picture( file ):
     camera.capture(file)
 
 def selfie():
+	synthesize.say("It's time for a selfie!")
+	time.sleep(2)
 	synthesize.say('Say Cheese!')
 	time.sleep(2)
+	synthesize.say('Snip!')
 	filename = ('image{}.jpg'.format(time.time()))
 	take_picture('./selfies/' + filename)
 	emailio.send_mail('jauffrebot@gmail.com', 'trevedwa@gmail.com', '', '', ['./selfies/' + filename])
