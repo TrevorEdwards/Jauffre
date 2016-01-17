@@ -1,4 +1,4 @@
-import json, urllib2
+import json, urllib2, synthesize
 
 #Gets a random chuck norris joke
 def get_joke_text():
@@ -8,4 +8,4 @@ def get_joke_text():
 	decoded_resp = json.JSONDecoder().decode(resp)
 	joke = decoded_resp['value']['joke']
 
-	print joke
+	synthesize.say(joke)
