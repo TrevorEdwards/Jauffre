@@ -19,7 +19,9 @@ camera.vflip = True
 def take_picture( file ):
     camera.capture(file)
 
-def selfies():
+def selfie():
+	synthesize.say('Say Cheese!')
+	time.sleep(2)
 	filename = ('image{}.jpg'.format(time.time()))
 	take_picture('./selfies/' + filename)
 	emailio.send_mail('jauffrebot@gmail.com', 'trevedwa@gmail.com', '', '', ['./selfies/' + filename])
