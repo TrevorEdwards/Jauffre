@@ -15,7 +15,8 @@ config = {
         'jauffre',
         'pyttsx',
         'pyaudio',
-        'SpeechRecognition'
+        'SpeechRecognition',
+        'poplib'
     ],
     'scripts': [],
     'name': 'jauffre'

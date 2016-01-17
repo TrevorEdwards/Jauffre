@@ -14,4 +14,3 @@ def say(text):
         return
     #engine.say(text)
     #engine.runAndWait()
-    #engine.stop()
