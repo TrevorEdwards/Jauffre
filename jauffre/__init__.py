@@ -10,10 +10,9 @@ import camera_util, light, shutil, emailio, Image
 in_normal_mode = True
 check_email_count = 0
 
-synthesize.say('My name is Jauffree.')
-synthesize.say('Send me a command.')
+synthesize.say('Hello. I am Jauffre: Your friendly neighborhood house bot!')
+time.sleep(3)
 #Here we begin the command waiting loop.
-#speech.recognize() TODO: Make this work on the py
 
 while True:
     if in_normal_mode:

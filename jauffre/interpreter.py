@@ -1,6 +1,6 @@
 import command
 
-command_list = ["joke","weather","play","pause","stop","skip","light","security"]
+command_list = ["joke","weather","play","pause","stop","skip","light","security","created","name","mood"]
 
 def interpret(s):
 	print "meow"

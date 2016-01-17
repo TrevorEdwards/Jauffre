@@ -1,4 +1,4 @@
-import joke, weather, music, security
+import joke, weather, music, security, name, creators, having_date
 import os
 
 class Command(object):
@@ -28,6 +28,12 @@ class Command(object):
 			music.next_song()
 		elif self.get_type() == "stop":
 			music.stop_song()
+		elif self.get_type() == "name":
+			name.do()
+		elif self.get_type() == "created":
+			creators.do()
+		elif self.get_type() == "mood":
+			having_date.do()
 		elif self.get_type() == "security":
 			return security.toggle_security()
 		return False;
