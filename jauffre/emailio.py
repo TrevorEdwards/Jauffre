@@ -33,6 +33,7 @@ def send_mail(send_from, send_to, subject, text, files=None):
         Date=formatdate(localtime=True),
         Subject=subject
     )
+    
     msg.attach(MIMEText(text))
 
     for f in files or []:
