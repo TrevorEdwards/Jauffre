@@ -16,5 +16,4 @@ def get():
     #    print message
     pop_conn.quit()
     if len(messages) > 0:
-        print messages[0]
         return messages[0]

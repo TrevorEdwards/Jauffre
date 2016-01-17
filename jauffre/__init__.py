@@ -4,6 +4,7 @@ import speech
 import inputs
 import time
 import email
+import interpreter
 #import face
 
 in_normal_mode = True
@@ -16,3 +17,4 @@ synthesize.say('Send me a command.')
 
 while True:
     command = inputs.next()
+    interpreter.interpret(command)
