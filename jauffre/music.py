@@ -31,7 +31,7 @@ channel1 = pygame.mixer.Channel(1)
 channel1.set_volume(1)
 
 def add_song_to_queue(song):
-	sound = pygame.mixer.Sound('./music/' + song)
+	sound = pygame.mixer.Sound('/home/pi/jauffre/Jauffre/jauffre/music/' + song)
 	#print sound
 	channel1.queue(sound)
 

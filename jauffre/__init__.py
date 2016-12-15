@@ -49,14 +49,14 @@ while True:
         #Take a picture
         camera_util.take_picture("pictures/current.jpg")
         #Compare to previous picture
-        if (compare_photos("pictures/current.jpg", "pictures/last.jpg", in_alarm) == True) and pic_count > 3:
+        if (compare_photos("/home/pi/jauffre/Jauffre/jauffre/pictures/current.jpg", "/home/pi/jauffre/Jauffre/jauffre/pictures/last.jpg", in_alarm) == True) and pic_count > 3:
             #Store current photo
-            shutil.copyfile('pictures/current.jpg','pictures/kept/sec_'+str(time.time()))
+            shutil.copyfile('/home/pi/jauffre/Jauffre/jauffre/pictures/current.jpg','/home/pi/jauffre/Jauffre/jauffre/pictures/kept/sec_'+str(time.time()))
             if not in_alarm:
                 in_alarm = True
                 #Email current photo to Trevor
 		synthesize.say("You shouldn't be snooping around here at this time.  Someone might think you're... up to something.")
-                emailio.send_mail('jauffrebot@gmail.com','trevedwa@gmail.com','Uh oh...','Possible security breach detected',['pictures/current.jpg','pictures/last.jpg'])
+                emailio.send_mail('jauffrebot@gmail.com','trevedwa@gmail.com','Uh oh...','Possible security breach detected',['/home/pi/jauffre/Jauffre/jauffre/pictures/current.jpg','/home/pi/jauffre/Jauffre/jauffre/pictures/last.jpg'])
             time.sleep(.5) #We want a video-like history
         else:
             in_alarm = False
@@ -70,6 +70,6 @@ while True:
             light.turn_on(False)
             pic_count += 1
             time.sleep(4)
-        shutil.copyfile('pictures/current.jpg','pictures/last.jpg') 
+        shutil.copyfile('/home/pi/jauffre/Jauffre/jauffre/pictures/current.jpg','/home/pi/jauffre/Jauffre/jauffre/pictures/last.jpg') 
 
 

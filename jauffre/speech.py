@@ -2,7 +2,7 @@ import speech_recognition as sr
 
 def recognize():
     r = sr.Recognizer()
-    with sr.Microphone() as source:
+    with sr.Microphone(device_index = 1, sample_rate = 44100, chunk_size = 512) as source:
         print("Say something!")
         audio = r.listen(source)
     try:

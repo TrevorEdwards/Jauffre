@@ -25,7 +25,7 @@ def selfie():
 	synthesize.say('Say Cheese!')
 	time.sleep(1.5)
 	filename = ('image{}.jpg'.format(time.time()))
-	take_picture('./selfies/' + filename)
+	take_picture('/home/pi/jauffre/Jauffre/jauffre/selfies/' + filename)
 	synthesize.say('Snip!')
-	emailio.send_mail('jauffrebot@gmail.com', 'trevedwa@gmail.com', '', '', ['./selfies/' + filename])
+	emailio.send_mail('jauffrebot@gmail.com', 'trevedwa@gmail.com', '', '', ['/home/pi/jauffre/Jauffre/jauffre/selfies/' + filename])
 
