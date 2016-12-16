@@ -24,8 +24,11 @@ time.sleep(3)
 def compare_photos(path1, path2, in_alarm):
     imga = Image.open(path1)
     imgb = Image.open(path2)
-    error_thresh = 2300
-    return mse(imga, imgb) > error_thresh
+    error_thresh = 12200
+    val = mse(imga, imgb)
+    if (val > error_thresh):
+        print(val)
+    return val > error_thresh
 
 
 #Source: http://www.pyimagesearch.com/2014/09/15/python-compare-two-images/
@@ -69,7 +72,7 @@ while True:
                     emailio.send_mail('jauffreebot@gmail.com','trevedwa@gmail.com','Security mode has been turned off','Security mode has been turned off. Phew!')
             light.turn_on(False)
             pic_count += 1
-            time.sleep(4)
+            time.sleep(3)
         shutil.copyfile('/home/pi/jauffre/Jauffre/jauffre/pictures/current.jpg','/home/pi/jauffre/Jauffre/jauffre/pictures/last.jpg') 
 
 

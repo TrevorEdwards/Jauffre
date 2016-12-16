@@ -2,10 +2,14 @@
 import emailio
 import time
 import speech
+import urllib2
 
 
 def next():
     while True:
+        time.sleep(2)
+	ugh=urllib2.urlopen("https://putget.herokuapp.com/").read()
+	return ugh
         rect = speech.recognize()
         print type(rect)
         if rect != "" and type(rect) == unicode:
@@ -13,8 +17,5 @@ def next():
         time.sleep(5)
 
 def scan_email():
-    res = emailio.get()
-    if res != "" and type(res) == str:
-        return res[res.find("Content-Type: text/plain; charset=UTF-8"):]
-    else:
-        return ""
+	ugh=urllib2.urlopen("https://putget.herokuapp.com/").read()
+	return ugh
